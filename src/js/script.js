@@ -18,6 +18,7 @@
 
   const className = {
     favorite: 'favorite',
+    hidden: 'hidden',
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -68,8 +69,30 @@
         }
         console.log(filters);
       }
+      filterBooks();
     });
   }
+
+  function filterBooks() {
+    for(let book of dataSource.books){
+      let shouldBeHidden = false;
+      for(const filter of filters){
+        if(!book.details[filter]){
+          shouldBeHidden = true;
+          break;
+        }
+      }
+
+      const bookImage = document.querySelector('.book__image[data-id="' + book.id + '"]');
+
+      if(shouldBeHidden == true){
+        bookImage.classList.add(className.hidden);
+      } else {
+        bookImage.classList.remove(className.hidden);
+      }
+    }
+  }
+
 
   renderBooks();
   initActions();
