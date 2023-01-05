@@ -26,6 +26,7 @@ figure {
     margin: 10px 30px;
     position: relative;
     transition: .2s;
+    cursor: pointer;
 
     &::after {
       content: "\f004";
