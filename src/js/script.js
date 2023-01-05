@@ -36,15 +36,17 @@
     const books = document.querySelectorAll(select.book.image);
     for(let book of books){
       book.addEventListener('dblclick', function(event){
-        event.preventDefault();
-        const clickedBook = book.getAttribute('data-id');
-        if(!favoriteBooks.includes(clickedBook)){
-          book.classList.add(className.favorite);
-          favoriteBooks.push(clickedBook);
-        } else {
-          book.classList.remove(className.favorite);  
-          const index = favoriteBooks.indexOf(clickedBook);
-          favoriteBooks.splice(index, 1);
+        if(event.target.offsetParent.classList.contains('book__image')){
+          event.preventDefault();
+          const clickedBook = book.getAttribute('data-id');
+          if(!favoriteBooks.includes(clickedBook)){
+            book.classList.add(className.favorite);
+            favoriteBooks.push(clickedBook);
+          } else {
+            book.classList.remove(className.favorite);  
+            const index = favoriteBooks.indexOf(clickedBook);
+            favoriteBooks.splice(index, 1);
+          }
         }
       });
     }
